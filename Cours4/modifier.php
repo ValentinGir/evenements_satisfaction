@@ -9,9 +9,19 @@
 </head>
 <body>
 <?php
+
+    if(isset($_POST['postid']))
+    {
+        $id = $_POST['postid'];
+    }
     if(isset($_GET['id']))
     {
-        $url = $description = $description2 = "";
+        $id = $_GET['id'];
+    }
+
+    if(isset($id))
+    {
+        $image = $description = $description2 = "";
         $urlErreur = $descriptionErreur = $description2Erreur = $tailleErreur = "";
         $taille = null;
         $erreur = false;
@@ -20,7 +30,6 @@
         $username = "root";
         $password = "root";
         $dbname = "linge";
-        $id = $_GET['id'];
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,22 +37,22 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        
+
         $sql = "SELECT * FROM tableimage WHERE id=$id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
-        $url = $row["image"];
+        $image = $row["image"];
         $description = $row["description"];
         $description2 = $row["description2"];
         $taille = $row["taille"];
 
         if ($_SERVER['REQUEST_METHOD'] == "POST"){
-            if(empty($_POST['url'])){
+            if(empty($_POST['image'])){
                 $urlErreur = "Ce champ est obligatoire";
                 $erreur  = true;
             }
             else {
-                $url = trojan($_POST['url']);
+                $image = trojan($_POST['image']);
             }
 
             if(empty($_POST['description'])){
@@ -69,6 +78,7 @@
             else {
                 $taille = trojan($_POST['taille']);
             }
+            
         }
     
     
@@ -77,7 +87,7 @@
         <div class="container">
             <div class="row">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    Lien de l'image : <input type="text" name="url" maxLength="1000" value="<?php echo $url;?>" ><br>
+                    Lien de l'image : <input type="text" name="image" maxLength="1000" value="<?php echo $image;?>" ><br>
                     <p style="color:red;"><?php echo $urlErreur; ?></p>
 
                     Description : <input type="text" name="description" maxLength="255" value="<?php echo $description;?>"> <br>
@@ -89,6 +99,12 @@
                     Taille de l'image : <input type="number" name="taille" value="<?php echo $taille;?>"> <br>
                     <p style="color:red;"><?php echo $tailleErreur; ?></p>
 
+                    <input type="hidden" name="postid" value="<?php
+                    if(isset($_GET['id']))
+                    {
+                        echo $_GET['id']; ?>"/>
+                        <?php
+                    }?>
                     <input type="submit" name="submit">
                 </form>
             </div>
@@ -97,9 +113,8 @@
         <?php
         }
 
-        if(isset($_POST['submit']))
-        {
-            $sql2 = "UPDATE tableimage SET image=$url, description=$description, 
+        if(isset($_POST['submit'])) {
+            $sql2 = "UPDATE tableimage SET image=$image, description=$description, 
                     description2 = $description2, taille = $taille WHERE id=$id";
             if ($conn->query($sql2) === TRUE) {
                 echo "Record updated successfully";
