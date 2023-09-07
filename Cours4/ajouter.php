@@ -92,7 +92,7 @@
         VALUES ('$url', '$description', '$description2', '$taille')";
         if (mysqli_query($conn, $sql)) {
           echo "Enregistrement réussi";
-          header('Location: index.php');
+          header('Location: index.php?add=true');
           exit;
         } else {
           echo "Error: " . $sql . "<br>" . mysqli_error($conn);
