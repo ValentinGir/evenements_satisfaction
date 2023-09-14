@@ -36,8 +36,7 @@ session_start();
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Date de début</th>
-                    <th scope="col">Date de fin</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Département</th>
                     <th scope="col">Avis positif étudiant</th>
                     <th scope="col">Avis neutre étudiant</th>
@@ -57,8 +56,7 @@ session_start();
                 <th scope="row"><?php echo $row["id"] ?></th>
                 <td><?php echo $row["nom"] ?></td>
                 <td><?php echo $row["description"] ?></td>
-                <td><?php echo $row["dateDebut"] ?></td>
-                <td><?php echo $row["dateFin"] ?></td>
+                <td><?php echo $row["date"] ?></td>
                 <td><?php echo $row["departement"] ?></td>
                 <td><?php echo $row["etuContent"] ?></td>
                 <td><?php echo $row["etuMid"] ?></td>

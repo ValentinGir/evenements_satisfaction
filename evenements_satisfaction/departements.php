@@ -47,7 +47,7 @@ session_start();
                 <th scope="row"><?php echo $row["id"] ?></th>
                 <td><?php echo $row["nom"] ?></td>
                 <td>
-                    <a href="supprimer.php?id=<?php echo $row["id"] ?>">X</a>
+                    <a href="supprimerDepartement.php?id=<?php echo $row["id"] ?>">X</a>
                 </td>
             </tr>
             <?php
