@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +35,16 @@
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
-                    <th scope="col">Description2</th>
-                    <th scope="col">Taille</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date de début</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Département</th>
+                    <th scope="col">Avis positif étudiant</th>
+                    <th scope="col">Avis neutre étudiant</th>
+                    <th scope="col">Avis négatif étudiant</th>
+                    <th scope="col">Avis positif employeur</th>
+                    <th scope="col">Avis neutre employeur</th>
+                    <th scope="col">Avis négatif employeur</th>
                     <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -45,7 +56,7 @@
             <tr>
                 <th scope="row"><?php echo $row["id"] ?></th>
                 <td><?php echo $row["nom"] ?></td>
-                <td><?php echo $row["description2"] ?></td>
+                <td><?php echo $row["description"] ?></td>
                 <td><?php echo $row["dateDebut"] ?></td>
                 <td><?php echo $row["dateFin"] ?></td>
                 <td><?php echo $row["departement"] ?></td>
@@ -64,7 +75,7 @@
 
         }
         } else {
-        echo "0 results";
+        echo "0 résultat";
         }
         $conn->close();
             ?>          
