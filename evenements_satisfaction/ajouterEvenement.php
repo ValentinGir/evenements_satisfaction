@@ -8,14 +8,14 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Ajouter un département</title>
+    <title>Ajout département</title>
 </head>
 <body>
 <?php
     if($_SESSION["connexion"] == true)
     {
-    $nom = "";
-    $nomErreur = "";
+    $nom = $description = $date = $departement = "";
+    $nomErreur = $descriptionErreur = $dateErreur = $departementErreur = "";
     $erreur = false;
 
     $servername = "localhost";
@@ -39,9 +39,31 @@ session_start();
             else {
                 $nom = trojan($_POST['nom']);
             }
-        }
 
-        
+            if(empty($_POST['description'])){
+                $descriptionErreur = "Ce champ est obligatoire";
+                $erreur  = true;
+            }
+            else {
+                $description = trojan($_POST['description']);
+            }
+
+            if(empty($_POST['date'])){
+                $dateErreur = "Ce champ est obligatoire";
+                $erreur  = true;
+            }
+            else {
+                $date = trojan($_POST['date']);
+            }
+
+            if(empty($_POST['departement'])){
+                $departementErreur = "Ce champ est obligatoire";
+                $erreur  = true;
+            }
+            else {
+                $departement = trojan($_POST['departement']);
+            }
+        }
     
     
     if ($_SERVER['REQUEST_METHOD'] != "POST" || $erreur == true){
@@ -49,8 +71,31 @@ session_start();
     <div class="container">
         <div class="row">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                Nom du département : <input type="text" name="nom" maxLength="255" value="<?php echo $nom;?>" ><br>
+                Nom de l'événement : <input type="text" name="nom" maxLength="255" value="<?php echo $nom;?>" ><br>
                 <p style="color:red;"><?php echo $nomErreur; ?></p>
+
+                Description : <input type="text" name="description" maxLength="1000" value="<?php echo $description;?>"> <br>
+                <p style="color:red;"><?php echo $descriptionErreur; ?></p>
+
+                Date : <input type="text" name="date" maxLength="255" value="<?php echo $date;?>"> <br>
+                <p style="color:red;"><?php echo $dateErreur; ?></p>
+
+                <label for="departement">Choisir un département :</label>
+                <select name="departement" id="departement">
+                    <option value="" selected disabled>
+                    <?php
+                    $sql = "SELECT * FROM departements";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {   
+                        while($row = $result->fetch_assoc()) {
+                            ?>
+                            <option value="<?php echo $row["nom"] ?>"> <?php echo $row["nom"] ?></option>
+                            <?php
+                        }
+                    }
+                    ?>
+                </select><br>
+                <p style="color:red;"><?php echo $departementErreur; ?></p>
 
                 <input type="submit" name="submit">
             </form>
@@ -61,11 +106,11 @@ session_start();
     }
     if(isset($_POST['submit'])  && $erreur == false)
     {
-        $sql = "INSERT INTO departements (nom)
-        VALUES ('$nom')";
+        $sql = "INSERT INTO evenements (nom, description, date, departement)
+        VALUES ('$nom', '$description', '$date', '$departement')";
         if (mysqli_query($conn, $sql)) {
           echo "Enregistrement réussi";
-          header('Location: departements.php?new=true');
+          header('Location: index.php?add=true');
           exit;
         } else {
           echo "Error: " . $sql . "<br>" . mysqli_error($conn);

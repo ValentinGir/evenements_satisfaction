@@ -12,6 +12,8 @@ session_start();
 </head>
 <body>
 <?php
+    if($_SESSION["connexion"] == true)
+    {
     $servername = "localhost";
     $username = "root";
     $password = "root";
@@ -65,8 +67,9 @@ session_start();
                 <td><?php echo $row["empMid"] ?></td>
                 <td><?php echo $row["empMecontent"] ?></td>
                 <td>
-                    <a href="modifier.php?id=<?php echo $row["id"] ?>">P</a><br>
-                    <a href="supprimer.php?id=<?php echo $row["id"] ?>">X</a>
+                    <a href="supprimerEvenement.php?id=<?php echo $row["id"] ?>">Supprimer</a><br>
+                    <a href="avisEtu.php?id=<?php echo $row["id"] ?>">Avis étudiants</a><br>
+                    <a href="avisEmp.php?id=<?php echo $row["id"] ?>">Avis employeurs</a>
                 </td>
             </tr>
             <?php
@@ -80,8 +83,17 @@ session_start();
                 </tbody>
             </table>
         </div>
-        <a href="ajouter.php">
-            <button type="button" class="btn btn-primary btn-lg">Ajouter</button>
+        <a href="ajouterEvenement.php">
+            <button type="button" class="btn btn-primary btn-lg">Ajouter un événement</button>
+        </a><br>
+        <a href="departements.php">
+            <button type="button" class="btn btn-primary btn-lg mt-2">Gestion des départements</button>
+        </a><br>
+        <a href="inscription.php">
+            <button type="button" class="btn btn-primary btn-lg mt-2">Ajouter un utilisateur</button>
+        </a><br>
+        <a href="deconnexion.php">
+            <button type="button" class="btn btn-primary btn-lg mt-2">Se déconnecter</button>
         </a>
 
         <?php
@@ -94,11 +106,20 @@ session_start();
             <?php
         }
 
+
         if(isset($_GET['add']))
         {
             ?>
             <div class="alert alert-success mt-2 w-25 text-center" role="alert">
             L'événement a été ajouté
+            <?php
+        }
+
+        if(isset($_GET['newUser']))
+        {
+            ?>
+            <div class="alert alert-success mt-2 w-25 text-center" role="alert">
+            L'utilisateur a été ajouté
             <?php
         }
 
@@ -112,6 +133,11 @@ session_start();
         ?>
         </div>
     </div>
+    <?php
+    }
+    else
+    header('Location: connexion.php');
+    ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

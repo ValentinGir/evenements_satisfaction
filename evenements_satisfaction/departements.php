@@ -23,7 +23,7 @@ session_start();
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT * FROM departement";
+    $sql = "SELECT * FROM departements";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
     // output data of each row
@@ -63,6 +63,9 @@ session_start();
         </div>
         <a href="ajouterDepartement.php">
             <button type="button" class="btn btn-primary btn-lg">Ajouter</button>
+        </a><br>
+        <a href="index.php">
+            <button type="button" class="btn btn-primary btn-lg mt-2">Retourner à l'acceuil</button>
         </a>
 
         <?php

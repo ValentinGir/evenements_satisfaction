@@ -25,11 +25,11 @@ session_start();
     }
     // Delete a row
     $id=$_GET['id'];
-    $sql = "DELETE FROM departements WHERE id=$id ";
+    $sql = "DELETE FROM evenements WHERE id=$id ";
 
     if ($conn->query($sql) === TRUE) {
         echo "Record deleted successfully";
-        header('Location: departements.php?delete=true');
+        header('Location: index.php?delete=true');
     } else {
         echo "Error deleting record: " . $conn->error;
     }
