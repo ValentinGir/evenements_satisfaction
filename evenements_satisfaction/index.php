@@ -19,33 +19,29 @@ session_start();
     $password = "root";
     $dbname = "evenements_satisfaction";
 
-    // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
     $sql = "SELECT * FROM evenements";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    // output data of each row
     ?>
     <div class="container">
         <div class="row">
             <table class="table table-striped"> 
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Description</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Département</th>
-                    <th scope="col">Avis positif étudiant</th>
-                    <th scope="col">Avis neutre étudiant</th>
-                    <th scope="col">Avis négatif étudiant</th>
-                    <th scope="col">Avis positif employeur</th>
-                    <th scope="col">Avis neutre employeur</th>
-                    <th scope="col">Avis négatif employeur</th>
+                    <th scope="col">Département(s)</th>
+                    <th scope="col">Avis positif étudiants</th>
+                    <th scope="col">Avis neutre étudiants</th>
+                    <th scope="col">Avis négatif étudiants</th>
+                    <th scope="col">Avis positif employeurs</th>
+                    <th scope="col">Avis neutre employeurs</th>
+                    <th scope="col">Avis négatif employeurs</th>
                     <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -55,7 +51,6 @@ session_start();
         while($row = $result->fetch_assoc()) {
             ?>
             <tr>
-                <th scope="row"><?php echo $row["id"] ?></th>
                 <td><?php echo $row["nom"] ?></td>
                 <td><?php echo $row["description"] ?></td>
                 <td><?php echo $row["date"] ?></td>

@@ -33,9 +33,8 @@ session_start();
             <table class="table table-striped"> 
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Nom</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,10 +43,9 @@ session_start();
         while($row = $result->fetch_assoc()) {
             ?>
             <tr>
-                <th scope="row"><?php echo $row["id"] ?></th>
                 <td><?php echo $row["nom"] ?></td>
                 <td>
-                    <a href="supprimerDepartement.php?id=<?php echo $row["id"] ?>">X</a>
+                    <a href="supprimerDepartement.php?id=<?php echo $row["id"] ?>">Supprimer</a>
                 </td>
             </tr>
             <?php

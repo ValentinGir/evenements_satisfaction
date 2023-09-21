@@ -61,6 +61,9 @@ session_start();
                 $erreur  = true;
             }
             else {
+                if(isset($_POST['departement2'])){
+                    $departement = trojan($_POST['departement'] . " et " . $_POST['departement2']);
+                } else
                 $departement = trojan($_POST['departement']);
             }
         }
@@ -95,8 +98,21 @@ session_start();
                     }
                     ?>
                 </select><br>
-                <p style="color:red;"><?php echo $departementErreur; ?></p>
-
+                <label for="departement2">Choisir un deuxième département (optionnel) :</label>
+                <select name="departement2" id="departement2">
+                    <option value="" selected disabled>
+                    <?php
+                    $sql = "SELECT * FROM departements";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {   
+                        while($row = $result->fetch_assoc()) {
+                            ?>
+                            <option value="<?php echo $row["nom"] ?>"> <?php echo $row["nom"] ?></option>
+                            <?php
+                        }
+                    }
+                    ?>
+                </select><br>
                 <input type="submit" name="submit">
             </form>
         </div>

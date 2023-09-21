@@ -48,6 +48,7 @@ session_start();
             $row = $result->fetch_assoc();
             $_SESSION["connexion"] = true;
             echo "<h2>Connexion réussie</h2>";
+            $_SESSION["timeClick"] = time();
             header('Location: index.php');
         }
         else {

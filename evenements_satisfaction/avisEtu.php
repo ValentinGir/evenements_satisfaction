@@ -17,13 +17,17 @@ session_start();
             if(isset($_GET['id'])) {
                 $id=$_GET['id'];
             }
+            if ($_SERVER['REQUEST_METHOD'] == "POST"){
+                $id = $_POST['id'];
+            }
             ?>
-            <div class="container">
-                <div class="row">
+            <div class="container h-100">
+                <div class="row h-100">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                        <button type="submit" name="submit" value="etuContent"><img src="img/content.PNG"></button>
-                        <button type="submit" name="submit" value="etuMid"><img src="img/mid.PNG"></button>
-                        <button type="submit" name="submit" value="etuMecontent"><img src="img/mecontent.PNG"></button>
+                        <button type="submit" name="submit" value="etuContent"><img src="img/content.PNG" class="img-responsive"></button>
+                        <button type="submit" name="submit" value="etuMid"><img src="img/mid.PNG" class="img-responsive"></button>
+                        <button type="submit" name="submit" value="etuMecontent"><img src="img/mecontent.PNG" class="img-responsive"></button>
+                        <input type="hidden" name="id" value="<?php echo $id?>">
                     </form>
                 </div>
             </div>
@@ -32,19 +36,35 @@ session_start();
                 $username = "root";
                 $password = "root";
                 $dbname = "evenements_satisfaction";
-            
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
                 if(isset($_POST['submit'])) {
+                        $id = $_POST['id'];
                     $submitValue = $_POST['submit'];
                     $sql = "SELECT $submitValue FROM evenements WHERE id=$id";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
-                        $nbAvis = $row[$submitValue];
-                        echo "<h1>$nbAvis</h1>";
+                        while($row = $result->fetch_assoc()) {
+                            $nbAvis = $row[$submitValue];
+                            $nbAvis = intval($nbAvis)+1;
+                            $sql2 = "UPDATE evenements SET $submitValue=$nbAvis WHERE id=$id";
+                            $timeNow = time();
+                            $timeClick = $_SESSION["timeClick"];
+                            $timeDiff=$timeNow-$timeClick;
+                            if($timeDiff>=2) {
+                                if ($conn->query($sql2) === TRUE) {
+                                    $_SESSION["timeClick"] = time();
+                                } else {
+                                    "Erreur lors de la mise à jour " . $conn->error;
+                                }
+                            } else {
+                                $_SESSION["timeClick"] = time();
+                            }
+                        }
                     }
+                    $conn->close();
                 }
         }
         else
