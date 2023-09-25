@@ -27,13 +27,13 @@ session_start();
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <button type="submit" name="submit" value="etuContent" class="border-0"><img src="img/content.jpg" class="img-fluid"></button>
+                                    <button type="submit" name="submit" value="empContent" class="border-0"><img src="img/content.jpg" class="img-fluid"></button>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <button type="submit" name="submit" value="etuMid" class="border-0"><img src="img/mid.jpg" class="img-fluid"></button>
+                                    <button type="submit" name="submit" value="empMid" class="border-0"><img src="img/mid.jpg" class="img-fluid"></button>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                    <button type="submit" name="submit" value="etuMecontent" class="border-0"><img src="img/mecontent.jpg" class="img-fluid"></button>
+                                    <button type="submit" name="submit" value="empMecontent" class="border-0"><img src="img/mecontent.jpg" class="img-fluid"></button>
                                 </div>
                             </div>
                         </div>
