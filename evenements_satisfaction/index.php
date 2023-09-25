@@ -11,6 +11,24 @@ session_start();
     <title>Evenements</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="container-fluid">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="ajouterEvenement.php">Ajouter un événement</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="departements.php">Gestion des départements</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="inscription.php">Ajouter un utilisateur</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="deconnexion.php">Se déconnecter</a>
+    </li>
+  </ul>
+ </div>
+</nav>
 <?php
     if($_SESSION["connexion"] == true)
     {
@@ -78,19 +96,6 @@ session_start();
                 </tbody>
             </table>
         </div>
-        <a href="ajouterEvenement.php">
-            <button type="button" class="btn btn-primary btn-lg">Ajouter un événement</button>
-        </a><br>
-        <a href="departements.php">
-            <button type="button" class="btn btn-primary btn-lg mt-2">Gestion des départements</button>
-        </a><br>
-        <a href="inscription.php">
-            <button type="button" class="btn btn-primary btn-lg mt-2">Ajouter un utilisateur</button>
-        </a><br>
-        <a href="deconnexion.php">
-            <button type="button" class="btn btn-primary btn-lg mt-2">Se déconnecter</button>
-        </a>
-
         <?php
         if(isset($_GET['delete']))
         {
