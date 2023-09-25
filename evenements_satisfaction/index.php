@@ -21,7 +21,7 @@ session_start();
       <a class="nav-link" href="departements.php">Gestion des départements</a>
     </li>
     <li class="nav-item px-4">
-      <a class="nav-link" href="inscription.php">Ajouter un utilisateur</a>
+      <a class="nav-link" href="gestionUtilisateurs.php">Gestion des utilisateurs</a>
     </li>
     <li class="nav-item px-4">
       <a class="nav-link" href="deconnexion.php">Se déconnecter</a>
@@ -80,6 +80,7 @@ session_start();
                 <td><?php echo $row["empMid"] ?></td>
                 <td><?php echo $row["empMecontent"] ?></td>
                 <td>
+                    <a href="modifier.php?id=<?php echo $row["id"] ?>">Modifier</a>
                     <a href="supprimerEvenement.php?id=<?php echo $row["id"] ?>">Supprimer</a><br>
                     <a href="avisEtu.php?id=<?php echo $row["id"] ?>">Avis étudiants</a><br>
                     <a href="avisEmp.php?id=<?php echo $row["id"] ?>">Avis employeurs</a>
@@ -123,13 +124,15 @@ session_start();
             <?php
         }
 
-        if(isset($_GET['edit']))
+        if(isset($_GET['modif']))
         {
             ?>
             <div class="alert alert-warning mt-2 w-25 text-center" role="alert">
             L'événement a été modifié
             <?php
         }
+
+        
         ?>
         </div>
     </div>

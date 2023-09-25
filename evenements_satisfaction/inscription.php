@@ -49,7 +49,7 @@ session_start();
             }
 
             if(empty($_POST['password2'])){
-                $password2Erreur = "Ce champ est obligatoire";
+                $passwordErreur = "Ce champ est obligatoire";
                 $erreur  = true;
             }
             else {
@@ -68,20 +68,26 @@ session_start();
     
     if ($_SERVER['REQUEST_METHOD'] != "POST" || $erreur == true){
     ?>
-    <div class="container">
-        <div class="row">
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                Email : <input type="text" name="email" maxLength="255" value="<?php echo $email;?>" ><br>
-                <p style="color:red;"><?php echo $emailErreur; ?></p>
+    <div class="container text-center h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-6 col-xs-12">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <h3 class="card-title">Inscription</h4>
+                            Email : <input type="text" name="email" maxLength="255" class="card-text mt-3" value="<?php echo $email;?>" ><br>
+                            <p style="color:red;"><?php echo $emailErreur; ?></p>
 
-                Mot de passe : <input type="password" name="password" maxLength="1000" value="<?php echo $password;?>"> <br>
-                <p style="color:red;"><?php echo $passwordErreur; ?></p>
+                            Mot de passe : <input type="password" name="password" maxLength="1000" value="<?php echo $password;?>"> <br>
+                            <p style="color:red;"><?php echo $passwordErreur; ?></p>
 
-                Confirmation de  mot de passe : <input type="password" name="password2" maxLength="1000" value="<?php echo $password2;?>"> <br>
-                <p style="color:red;"><?php echo $password2Erreur; ?></p>
-
-                <input type="submit" name="submit">
-            </form>
+                            Confirmation de  mot de passe : <input type="password" name="password2" maxLength="1000"  class="card-text mt-3 mb-3" value="<?php echo $password2;?>"> <br>
+                            <p style="color:red;"><?php echo $password2Erreur; ?></p>
+                            <input type="submit" name="submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -93,7 +99,7 @@ session_start();
         VALUES ('$email', '$password')";
         if (mysqli_query($conn, $sql)) {
           echo "Enregistrement réussi";
-          header('Location: index.php?newUser=true');
+          header('Location: gestionUtilisateurs.php?add=true');
           exit;
         } else {
           echo "Error: " . $sql . "<br>" . mysqli_error($conn);

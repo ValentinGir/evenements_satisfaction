@@ -8,12 +8,21 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Ajout Evenement</title>
+    <title>Modifier département</title>
 </head>
 <body>
 <?php
     if($_SESSION["connexion"] == true)
     {
+        if($_SESSION["connexion"] == true)
+        { 
+            if(isset($_GET['id'])) {
+                $id=$_GET['id'];
+            }
+            if ($_SERVER['REQUEST_METHOD'] == "POST"){
+                $id = $_POST['id'];
+            }
+        }
     $nom = $description = $date = $departement = "";
     $nomErreur = $descriptionErreur = $dateErreur = $departementErreur = "";
     $erreur = false;
@@ -30,6 +39,13 @@ session_start();
     }
 ?>
     <?php
+        $sql = "SELECT * FROM evenements WHERE id=$id";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $nom = $row["nom"];
+        $description = $row["description"];
+        $date = $row["date"];
+
         if ($_SERVER['REQUEST_METHOD'] == "POST"){
             $erreur = false;
             if(empty($_POST['nom'])){
@@ -56,7 +72,6 @@ session_start();
                 $date = trojan($_POST['date']);
             }
 
-        
             if(empty($_POST['departement'])){
                 $departementErreur = "Ce champ est obligatoire";
                 $erreur  = true;
@@ -90,14 +105,13 @@ session_start();
 
                 <label for="departement">Choisir un département :</label>
                 <select name="departement" id="departement">
-                    <option value="" selected disabled>
                     <?php
                     $sql = "SELECT * FROM departements";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {   
                         while($row = $result->fetch_assoc()) {
                             ?>
-                            <option value="<?php echo $row["nom"] ?>"> <?php echo $row["nom"] ?></option>
+                            <option selected value="<?php echo $row["nom"] ?>"> <?php echo $row["nom"] ?></option>
                             <?php
                         }
                     }
@@ -106,7 +120,7 @@ session_start();
                 <p style="color:red;"><?php echo $departementErreur; ?></p>
                 <label for="departement2">Choisir un deuxième département (optionnel) :</label>
                 <select name="departement2" id="departement2">
-                    <option value="" selected disabled>
+                <option value="" selected disabled>
                     <?php
                     $sql = "SELECT * FROM departements";
                     $result = $conn->query($sql);
@@ -119,6 +133,7 @@ session_start();
                     }
                     ?>
                 </select><br>
+                <input type="hidden" name="id" value="<?php echo $id?>">
                             <input type="submit" name="submit">
                         </div>
                     </div>
@@ -131,11 +146,10 @@ session_start();
     }
     if(isset($_POST['submit'])  && $erreur == false)
     {
-        $sql = "INSERT INTO evenements (nom, description, date, departement)
-        VALUES ('$nom', '$description', '$date', '$departement')";
+        $sql = "UPDATE evenements SET nom='$nom', description='$description', date='$date', departement='$departement' WHERE id=$id";
         if (mysqli_query($conn, $sql)) {
           echo "Enregistrement réussi";
-          header('Location: index.php?add=true');
+          header('Location: index.php?modif=true');
           exit;
         } else {
           echo "Error: " . $sql . "<br>" . mysqli_error($conn);
