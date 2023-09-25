@@ -11,6 +11,27 @@ session_start();
     <title>Départements</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="container-fluid">
+  <ul class="navbar-nav">
+  <li class="nav-item px-4">
+      <a class="nav-link" href="index.php">Événements</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="ajouterEvenement.php">Ajouter un événement</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="departements.php">Gestion des départements</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="gestionUtilisateurs.php">Gestion des utilisateurs</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="deconnexion.php">Se déconnecter</a>
+    </li>
+  </ul>
+ </div>
+</nav>
 <?php
     $servername = "localhost";
     $username = "root";
@@ -62,9 +83,6 @@ session_start();
         <a href="inscription.php">
             <button type="button" class="btn btn-primary btn-lg">Ajouter un utilisateur</button>
         </a><br>
-        <a href="index.php">
-            <button type="button" class="btn btn-primary btn-lg mt-2">Retourner à l'acceuil</button>
-        </a>
 
         <?php
         if(isset($_GET['delete']))

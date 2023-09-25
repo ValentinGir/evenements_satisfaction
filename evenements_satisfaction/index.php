@@ -14,6 +14,9 @@ session_start();
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 <div class="container-fluid">
   <ul class="navbar-nav">
+  <li class="nav-item px-4">
+      <a class="nav-link" href="index.php">Événements</a>
+    </li>
     <li class="nav-item px-4">
       <a class="nav-link" href="ajouterEvenement.php">Ajouter un événement</a>
     </li>
