@@ -67,22 +67,20 @@ session_start();
     
     if ($_SERVER['REQUEST_METHOD'] != "POST" || $erreur == true){
     ?>
-       <div class="container text-center h-100">
+    <div class="container text-center h-100">
         <div class="row justify-content-center align-items-center h-100">
             <div class="col-6 col-xs-12">
-        <div class="card mt-5">
-                        <div class="card-body">
-                            <h3 class="card-title">Ajouter un département</h4>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                Nom du département : <input type="text" name="nom" maxLength="255" class="card-text mt-3" value="<?php echo $nom;?>" ><br>
-                <p style="color:red;"><?php echo $nomErreur; ?></p>
-                <input type="submit" name="submit">
-                </div>
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h3 class="card-title">Ajouter un département</h4>
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                            Nom du département : <input type="text" name="nom" maxLength="255" class="card-text mt-3" value="<?php echo $nom;?>" ><br>
+                            <p style="color:red;"><?php echo $nomErreur; ?></p>
+                            <input type="submit" name="submit">
+                        </form>
                     </div>
-    </div>
-
-
-            </form>
+                </div>
+            </div>
         </div>
     </div>
 

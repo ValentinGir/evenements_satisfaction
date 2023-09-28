@@ -94,7 +94,7 @@ session_start();
             <?php
         }
 
-        if(isset($_GET['add']))
+        if(isset($_GET['new']))
         {
             ?>
             <div class="alert alert-success mt-2 w-25 text-center" role="alert">
