@@ -11,6 +11,27 @@ session_start();
     <title>Ajouter un département</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="container-fluid">
+  <ul class="navbar-nav">
+  <li class="nav-item px-4">
+      <a class="nav-link" href="index.php">Événements</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="ajouterEvenement.php">Ajouter un événement</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="departements.php">Gestion des départements</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="gestionUtilisateurs.php">Gestion des utilisateurs</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="deconnexion.php">Se déconnecter</a>
+    </li>
+  </ul>
+ </div>
+</nav>
 <?php
     if($_SESSION["connexion"] == true)
     {
@@ -48,9 +69,14 @@ session_start();
     ?>
     <div class="container">
         <div class="row">
+        <div class="card mt-5">
+                        <div class="card-body">
+                            <h3 class="card-title">Ajouter un département</h4>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                Nom du département : <input type="text" name="nom" maxLength="255" value="<?php echo $nom;?>" ><br>
+                Nom du département : <input type="text" name="nom" maxLength="255" class="card-text mt-3" value="<?php echo $nom;?>" ><br>
                 <p style="color:red;"><?php echo $nomErreur; ?></p>
+                </div>
+                    </div>
 
                 <input type="submit" name="submit">
             </form>
