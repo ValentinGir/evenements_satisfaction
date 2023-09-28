@@ -84,9 +84,10 @@ session_start();
                 <td><?php echo $row["empMecontent"] ?></td>
                 <td>
                     <a href="modifier.php?id=<?php echo $row["id"] ?>">Modifier</a>
-                    <a href="supprimerEvenement.php?id=<?php echo $row["id"] ?>">Supprimer</a><br>
-                    <a href="avisEtu.php?id=<?php echo $row["id"] ?>">Avis étudiants</a><br>
-                    <a href="avisEmp.php?id=<?php echo $row["id"] ?>">Avis employeurs</a>
+                    <a href="supprimerEvenement.php?id=<?php echo $row["id"] ?>">Supprimer</a>
+                    <h6>Avis :</h6>
+                    <a href="avisEtu.php?id=<?php echo $row["id"] ?>">Étudiants</a><br>
+                    <a href="avisEmp.php?id=<?php echo $row["id"] ?>">Employeurs</a>
                 </td>
             </tr>
             <?php
