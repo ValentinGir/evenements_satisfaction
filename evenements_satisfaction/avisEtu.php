@@ -10,6 +10,7 @@ session_start();
     <link rel="stylesheet" href="style.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Avis</title>
+    <?php include 'connexionBD.php';?>
 </head>
 <body>
     <?php
@@ -43,10 +44,6 @@ session_start();
                 </div>
             </div>
             <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "root";
-                $dbname = "evenements_satisfaction";
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);

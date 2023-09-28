@@ -9,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Connexion</title>
+    <?php include 'connexionBD.php';?>
 </head>
 <body class="h-100">
 <div class="container text-center h-100">
@@ -35,10 +36,6 @@ session_start();
         $passworduser = trojan($_POST['password']);
         $passworduser = sha1($passworduser,false);
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "evenements_satisfaction";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         // Check connection

@@ -8,15 +8,12 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supprimer</title>
+    <?php include 'connexionBD.php';?>
 </head>
 <body>
 <?php
     if($_SESSION["connexion"] == true)
     {
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $dbname = "evenements_satisfaction";
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
