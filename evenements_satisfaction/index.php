@@ -11,6 +11,27 @@ session_start();
     <title>Evenements</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div class="container-fluid">
+  <ul class="navbar-nav">
+  <li class="nav-item px-4">
+      <a class="nav-link" href="index.php">Événements</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="ajouterEvenement.php">Ajouter un événement</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="departements.php">Gestion des départements</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="gestionUtilisateurs.php">Gestion des utilisateurs</a>
+    </li>
+    <li class="nav-item px-4">
+      <a class="nav-link" href="deconnexion.php">Se déconnecter</a>
+    </li>
+  </ul>
+ </div>
+</nav>
 <?php
     if($_SESSION["connexion"] == true)
     {
@@ -62,6 +83,7 @@ session_start();
                 <td><?php echo $row["empMid"] ?></td>
                 <td><?php echo $row["empMecontent"] ?></td>
                 <td>
+                    <a href="modifier.php?id=<?php echo $row["id"] ?>">Modifier</a>
                     <a href="supprimerEvenement.php?id=<?php echo $row["id"] ?>">Supprimer</a><br>
                     <a href="avisEtu.php?id=<?php echo $row["id"] ?>">Avis étudiants</a><br>
                     <a href="avisEmp.php?id=<?php echo $row["id"] ?>">Avis employeurs</a>
@@ -78,19 +100,6 @@ session_start();
                 </tbody>
             </table>
         </div>
-        <a href="ajouterEvenement.php">
-            <button type="button" class="btn btn-primary btn-lg">Ajouter un événement</button>
-        </a><br>
-        <a href="departements.php">
-            <button type="button" class="btn btn-primary btn-lg mt-2">Gestion des départements</button>
-        </a><br>
-        <a href="inscription.php">
-            <button type="button" class="btn btn-primary btn-lg mt-2">Ajouter un utilisateur</button>
-        </a><br>
-        <a href="deconnexion.php">
-            <button type="button" class="btn btn-primary btn-lg mt-2">Se déconnecter</button>
-        </a>
-
         <?php
         if(isset($_GET['delete']))
         {
@@ -118,13 +127,15 @@ session_start();
             <?php
         }
 
-        if(isset($_GET['edit']))
+        if(isset($_GET['modif']))
         {
             ?>
             <div class="alert alert-warning mt-2 w-25 text-center" role="alert">
             L'événement a été modifié
             <?php
         }
+
+        
         ?>
         </div>
     </div>

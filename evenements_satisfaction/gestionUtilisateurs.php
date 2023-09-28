@@ -44,7 +44,7 @@ session_start();
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT * FROM departements";
+    $sql = "SELECT id, email FROM users";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
     // output data of each row
@@ -54,7 +54,7 @@ session_start();
             <table class="table table-striped"> 
                 <thead>
                     <tr>
-                    <th scope="col">Nom</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -64,9 +64,9 @@ session_start();
         while($row = $result->fetch_assoc()) {
             ?>
             <tr>
-                <td><?php echo $row["nom"] ?></td>
+                <td><?php echo $row["email"] ?></td>
                 <td>
-                    <a href="supprimerDepartement.php?id=<?php echo $row["id"] ?>">Supprimer</a>
+                    <a href="supprimerUtilisateur.php?id=<?php echo $row["id"] ?>">Supprimer</a>
                 </td>
             </tr>
             <?php
@@ -80,8 +80,8 @@ session_start();
                 </tbody>
             </table>
         </div>
-        <a href="ajouterDepartement.php">
-            <button type="button" class="btn btn-primary btn-lg">Ajouter</button>
+        <a href="inscription.php">
+            <button type="button" class="btn btn-primary btn-lg">Ajouter un utilisateur</button>
         </a><br>
 
         <?php
@@ -89,7 +89,7 @@ session_start();
         {
             ?>
             <div class="alert alert-danger mt-2 w-25 text-center" role="alert">
-            Le département a été supprimé
+            L'utilisateur a été supprimé
             </div>
             <?php
         }
@@ -98,7 +98,7 @@ session_start();
         {
             ?>
             <div class="alert alert-success mt-2 w-25 text-center" role="alert">
-            Le département a été ajouté
+            L'utilisateur a été ajouté
             <?php
         }
         ?>

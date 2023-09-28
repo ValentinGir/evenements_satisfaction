@@ -10,17 +10,22 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Connexion</title>
 </head>
-<body>
+<body class="h-100">
+<div class="container text-center h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-4 col-xs-12">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h3 class="card-title">Connexion</h4>
+                        Email : <input type="text" name="email" maxLength="250" class="card-text mt-3 "><br>
 
-<div class="container">
-    <div class="row mt-5">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-            Email : <input type="text" name="email" maxLength="250" ><br>
-
-            Mot de passe : <input type="password" name="password" maxLength="250"><br>
-
-            <input type="submit" name="submit">
-        </form>
+                        Mot de passe : <input type="password" name="password" maxLength="250" class="card-text mt-3 mb-3"><br>
+                        <input type="submit" name="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

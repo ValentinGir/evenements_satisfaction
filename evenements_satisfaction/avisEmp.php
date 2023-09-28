@@ -24,10 +24,20 @@ session_start();
             <div class="container">
                 <div class="row">
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                        <button type="submit" name="submit" value="empContent"><img src="img/content.PNG"></button>
-                        <button type="submit" name="submit" value="empMid"><img src="img/mid.PNG"></button>
-                        <button type="submit" name="submit" value="empMecontent"><img src="img/mecontent.PNG"></button>
-                        <input type="hidden" name="id" value="<?php echo $id ?>">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <button type="submit" name="submit" value="empContent" class="border-success rounded border-5"><img src="img/content.jpg" class="img-fluid"></button>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <button type="submit" name="submit" value="empMid" class="border-warning rounded border-5"><img src="img/mid.jpg" class="img-fluid"></button>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    <button type="submit" name="submit" value="empMecontent" class="border-danger rounded border-5"><img src="img/mecontent.jpg" class="img-fluid"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" value="<?php echo $id?>">
                     </form>
                 </div>
             </div>
